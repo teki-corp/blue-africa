@@ -66,28 +66,25 @@ export function CarouselGallery() {
 
   // Auto play functionality
   React.useEffect(() => {
-    if (!autoPlay) return;
-
-    const interval = setInterval(() => {
-      nextSlide();
-    }, autoPlayInterval);
-
-    return () => clearInterval(interval);
-  }, [currentIndex]);
+    if (autoPlay) {
+      const interval = setInterval(nextSlide, 5000);
+      return () => clearInterval(interval);
+    }
+  }, [autoPlay, nextSlide]);
 
   // Keyboard navigation for main carousel
   React.useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "ArrowRight") {
-        nextSlide();
-      } else if (e.key === "ArrowLeft") {
+      if (e.key === 'ArrowLeft') {
         prevSlide();
+      } else if (e.key === 'ArrowRight') {
+        nextSlide();
       }
     };
 
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, []);
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [nextSlide, prevSlide]);
 
   return (
     <div className="w-full">

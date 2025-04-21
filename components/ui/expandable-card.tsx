@@ -21,7 +21,6 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 
-import { Progress as ProgressBar } from "@/components/ui/progress";
 import {
   Tooltip,
   TooltipContent,
@@ -30,6 +29,7 @@ import {
 } from "@/components/ui/tooltip";
 import { useExpandable } from "@/components/hooks/use-expandable";
 import { Avatar, AvatarFallback, AvatarImage } from "./avatar";
+import { cn } from "@/lib/utils";
 
 interface ProjectStatusCardProps {
   title: string;

@@ -90,10 +90,6 @@ function ImpactSection({ impactData }: ImpactSectionProps) {
     offset: ["start start", "end end"],
   });
 
-  const y1 = useTransform(scrollYProgress, [0, 1], [0, 100]);
-  const y2 = useTransform(scrollYProgress, [0, 1], [0, -100]);
-  const y3 = useTransform(scrollYProgress, [0, 1], [0, 150]);
-  const y4 = useTransform(scrollYProgress, [0, 1], [0, -150]);
   const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
 
   return (
@@ -142,10 +138,11 @@ function ImpactSection({ impactData }: ImpactSectionProps) {
                 className="group relative overflow-hidden rounded-lg h-[400px] block"
               >
                 <div className="absolute inset-0">
-                  <img
+                  <Image
                     src={item.image}
                     alt={item.title}
-                    className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-300"
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-300"
                   />
                 </div>
                 <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/80 via-black/50 to-transparent backdrop-blur-sm">

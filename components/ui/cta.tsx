@@ -14,10 +14,8 @@ function CTA() {
             <h3 className="text-3xl md:text-5xl tracking-tighter max-w-xl font-regular">
               Partner with Us for a Sustainable Future
             </h3>
-            <p className="text-lg leading-relaxed tracking-tight text-blue-100 max-w-xl">
-              Whether you're a project developer seeking funding or an investor looking to make 
-              an impact, join us in building a sustainable future for Africa. Together, we can 
-              drive positive change through strategic green investments.
+            <p className="text-lg text-muted-foreground mb-8">
+              Join us in our mission to create a sustainable future for Africa&apos;s marine ecosystems.
             </p>
           </div>
           <div className="flex flex-row gap-4">
