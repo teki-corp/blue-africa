@@ -34,7 +34,6 @@ export function FeatureSteps({
   title = "Our vision 2030 targets",
   subtitle,
   autoPlayInterval = 3000,
-  imageHeight = "h-[400px]",
 }: FeatureStepsProps) {
   const [currentFeature, setCurrentFeature] = useState(0)
   const [progress, setProgress] = useState(0)
