@@ -146,7 +146,7 @@ export const NavItems = ({ items, className, onItemClick }: NavItemsProps) => {
 };
 
 export const MobileNav = ({ children, className, visible }: MobileNavProps) => {
-  const [isOpen, setIsOpen] = useState(false);
+  
 
   return (
     <motion.div
@@ -197,7 +197,7 @@ export const MobileNavMenu = ({
   children,
   className,
   isOpen,
-  onClose,
+  
 }: MobileNavMenuProps) => {
   return (
     <AnimatePresence>
