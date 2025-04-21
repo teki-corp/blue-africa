@@ -1,0 +1,3 @@
+import React from 'react';
+// Move existing content from impact-section.tsx here
+// ... existing code ... 
