@@ -1,13 +1,12 @@
 "use client";
 
-import React, { useRef, useEffect } from "react";
+import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Clock,
   GitBranch,
   Github,
   MessageSquare,
-  StepForwardIcon as Progress,
   Star,
   Users,
   CheckCircle2,
@@ -20,7 +19,6 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-
 import {
   Tooltip,
   TooltipContent,
@@ -29,7 +27,6 @@ import {
 } from "@/components/ui/tooltip";
 import { useExpandable } from "@/components/hooks/use-expandable";
 import { Avatar, AvatarFallback, AvatarImage } from "./avatar";
-import { cn } from "@/lib/utils";
 
 interface ProjectStatusCardProps {
   title: string;
@@ -51,9 +48,9 @@ export function ProjectStatusCard({
   openIssues,
 }: ProjectStatusCardProps) {
   const { isExpanded, toggleExpand, animatedHeight } = useExpandable();
-  const contentRef = useRef<HTMLDivElement>(null);
+  const contentRef = React.useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (contentRef.current) {
       animatedHeight.set(isExpanded ? contentRef.current.scrollHeight : 0);
     }
@@ -101,7 +98,12 @@ export function ProjectStatusCard({
               <span>Progress</span>
               <span>{progress}%</span>
             </div>
-            <ProgressBar value={progress} className="h-2" />
+            <div className="w-full bg-gray-200 rounded-full h-2">
+              <div
+                className="bg-blue-600 h-2 rounded-full"
+                style={{ width: `${progress}%` }}
+              />
+            </div>
           </div>
 
           <motion.div

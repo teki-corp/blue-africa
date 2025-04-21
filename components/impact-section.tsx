@@ -1,6 +1,5 @@
-import { motion, useScroll, useTransform } from "framer-motion";
+import { useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
-import { Gallery4, Gallery4Props } from "@/components/ui/gallery4"
 import Image from "next/image";
 import Link from "next/link";
 
@@ -71,16 +70,12 @@ interface GalleryItem {
   image: string;
 }
 
-interface GalleryData {
-  title: string;
-  description: string;
-  items: GalleryItem[];
-}
-
-
-
 interface ImpactSectionProps {
-  impactData: Gallery4Props;
+  impactData: {
+    title: string;
+    description: string;
+    items: GalleryItem[];
+  };
 }
 
 function ImpactSection({ impactData }: ImpactSectionProps) {
@@ -89,8 +84,6 @@ function ImpactSection({ impactData }: ImpactSectionProps) {
     target: containerRef,
     offset: ["start start", "end end"],
   });
-
-  const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
 
   return (
     <section className="w-full py-16 relative overflow-hidden" ref={containerRef}>
