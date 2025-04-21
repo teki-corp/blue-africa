@@ -1,4 +1,4 @@
-import { useScroll, useTransform } from "framer-motion";
+import { useScroll } from "framer-motion";
 import { useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -23,10 +23,7 @@ interface ImpactSectionProps {
 
 function ImpactSection({ impactData }: ImpactSectionProps) {
   const containerRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"],
-  });
+
 
   return (
     <section className="w-full py-16 relative overflow-hidden" ref={containerRef}>
