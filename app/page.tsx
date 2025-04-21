@@ -11,7 +11,6 @@ import {
 import Link from "next/link";
 import { Footer } from "@/components/ui/footer";
 import { ImpactSection } from "@/components/impact-section";
-import { Gallery4 } from "@/components/ui/gallery4";
 import { Feature } from "@/components/ui/feature-with-advantages";
 import { AccordionSection } from "@/components/accordion-section";
 import { Partners } from "@/components/partners";

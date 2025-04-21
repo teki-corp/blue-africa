@@ -6,7 +6,7 @@ import { GradientHeading } from "@/components/ui/gradient-heading";
 import { LogoCarousel } from "@/components/ui/logo-carousel";
 
 // Replace all existing icon components with new ones that use public images
-function UNEPLogo(props: SVGProps<SVGSVGElement>) {
+function UNEPLogo() {
   return (
     <div className="relative w-[200px] h-[100px]">
       <Image
@@ -20,7 +20,7 @@ function UNEPLogo(props: SVGProps<SVGSVGElement>) {
   );
 }
 
-function UNESCOLogo(props: SVGProps<SVGSVGElement>) {
+function UNESCOLogo() {
   return (
     <div className="relative w-[200px] h-[100px]">
       <Image
@@ -34,7 +34,7 @@ function UNESCOLogo(props: SVGProps<SVGSVGElement>) {
   );
 }
 
-function KenyaLogo(props: SVGProps<SVGSVGElement>) {
+function KenyaLogo() {
   return (
     <div className="relative w-[200px] h-[100px]">
       <Image

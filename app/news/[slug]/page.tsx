@@ -4,6 +4,7 @@ import { useParams } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import Image from "next/image";
 
 // This would typically come from your database or CMS
 const getArticleData = (slug: string) => {
@@ -104,10 +105,12 @@ export default function NewsArticle() {
       </div>
 
       <div className="relative w-full h-[400px] mb-8 rounded-lg overflow-hidden">
-        <img
+        <Image
           src={article.image}
           alt={article.title}
-          className="absolute w-full h-full object-cover"
+          fill
+          className="object-cover"
+          priority
         />
       </div>
 

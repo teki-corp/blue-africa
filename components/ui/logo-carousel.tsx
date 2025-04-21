@@ -8,6 +8,7 @@ import React, {
   type SVGProps,
 } from "react"
 import { AnimatePresence, motion } from "framer-motion"
+import Image from "next/image"
 
 interface Logo {
   name: string
@@ -110,36 +111,42 @@ interface LogoCarouselProps {
   className?: string
 }
 
-export function LogoCarousel({ columnCount = 2, logos, className }: LogoCarouselProps) {
-  const [logoSets, setLogoSets] = useState<Logo[][]>([])
-  const [currentTime, setCurrentTime] = useState(0)
+const LogoCarousel = React.forwardRef<HTMLDivElement, LogoCarouselProps>(
+  ({ columnCount = 2, logos, className }, ref) => {
+    const [logoSets, setLogoSets] = useState<Logo[][]>([])
+    const [currentTime, setCurrentTime] = useState(0)
 
-  const updateTime = useCallback(() => {
-    setCurrentTime((prevTime) => prevTime + 100)
-  }, [])
+    const updateTime = useCallback(() => {
+      setCurrentTime((prevTime) => prevTime + 100)
+    }, [])
 
-  useEffect(() => {
-    const intervalId = setInterval(updateTime, 100)
-    return () => clearInterval(intervalId)
-  }, [updateTime])
+    useEffect(() => {
+      const intervalId = setInterval(updateTime, 100)
+      return () => clearInterval(intervalId)
+    }, [updateTime])
 
-  useEffect(() => {
-    const distributedLogos = distributeLogos(logos, columnCount)
-    setLogoSets(distributedLogos)
-  }, [logos, columnCount])
+    useEffect(() => {
+      const distributedLogos = distributeLogos(logos, columnCount)
+      setLogoSets(distributedLogos)
+    }, [logos, columnCount])
 
-  return (
-    <div className={`flex space-x-4 ${className || ''}`}>
-      {logoSets.map((logos, index) => (
-        <LogoColumn
-          key={index}
-          logos={logos}
-          index={index}
-          currentTime={currentTime}
-        />
-      ))}
-    </div>
-  )
-}
+    return (
+      <div ref={ref} className={`flex space-x-4 ${className || ''}`}>
+        {logoSets.map((logos, index) => (
+          <LogoColumn
+            key={index}
+            logos={logos}
+            index={index}
+            currentTime={currentTime}
+          />
+        ))}
+      </div>
+    )
+  }
+)
+
+LogoCarousel.displayName = "LogoCarousel"
+
+export { LogoCarousel }
 
 export { LogoColumn };

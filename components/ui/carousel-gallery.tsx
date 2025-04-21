@@ -1,6 +1,6 @@
 "use client";
 
-import * as React from "react";
+import React, { useCallback } from "react";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
@@ -19,7 +19,6 @@ export function CarouselGallery() {
 
   // Configuration options
   const autoPlay = true;
-  const autoPlayInterval = 5000;
   const showThumbnails = true;
 
   // Static images array with blue economy themed images
@@ -56,38 +55,35 @@ export function CarouselGallery() {
     },
   ];
 
-  const prevSlide = () => {
+  const prevSlide = useCallback(() => {
     setCurrentIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
-  };
+  }, [images.length]);
 
-  const nextSlide = () => {
+  const nextSlide = useCallback(() => {
     setCurrentIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
-  };
+  }, [images.length]);
 
   // Auto play functionality
   React.useEffect(() => {
-    if (!autoPlay) return;
-
-    const interval = setInterval(() => {
-      nextSlide();
-    }, autoPlayInterval);
-
-    return () => clearInterval(interval);
-  }, [currentIndex]);
+    if (autoPlay) {
+      const interval = setInterval(nextSlide, 5000);
+      return () => clearInterval(interval);
+    }
+  }, [autoPlay, nextSlide]);
 
   // Keyboard navigation for main carousel
   React.useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "ArrowRight") {
-        nextSlide();
-      } else if (e.key === "ArrowLeft") {
+      if (e.key === 'ArrowLeft') {
         prevSlide();
+      } else if (e.key === 'ArrowRight') {
+        nextSlide();
       }
     };
 
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, []);
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [nextSlide, prevSlide]);
 
   return (
     <div className="w-full">

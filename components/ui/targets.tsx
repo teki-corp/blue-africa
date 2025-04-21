@@ -21,6 +21,13 @@ interface FeatureStepsProps {
   imageHeight?: string
 }
 
+interface TargetCardProps {
+  title: string;
+  description: string;
+  image: string;
+  progress: number;
+}
+
 export function FeatureSteps({
   features,
   className,
@@ -131,3 +138,30 @@ export function FeatureSteps({
     </div>
   )
 }
+
+function TargetCard({ title, description, image, progress }: TargetCardProps) {
+  return (
+    <div className="bg-white rounded-lg shadow-lg overflow-hidden">
+      <div className="relative h-48">
+        <Image
+          src={image}
+          alt={title}
+          fill
+          className="object-cover"
+        />
+      </div>
+      <div className="p-6">
+        <h3 className="text-xl font-bold mb-2">{title}</h3>
+        <p className="text-gray-600 mb-4">{description}</p>
+        <div className="w-full bg-gray-200 rounded-full h-2.5">
+          <div
+            className="bg-blue-600 h-2.5 rounded-full"
+            style={{ width: `${progress}%` }}
+          />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export { TargetCard };
