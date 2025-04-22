@@ -48,6 +48,7 @@ export default function HeroBadge({
 
   const BadgeWrapper = href ? Link : motion.button;
   const wrapperProps = href ? { href } : { onClick };
+  
 
   const baseClassName = cn(
     "inline-flex items-center rounded-full border transition-colors",
@@ -56,12 +57,9 @@ export default function HeroBadge({
     className
   );
 
-  return (
-    <BadgeWrapper
-      {...wrapperProps}
-      className={cn("group", href && "cursor-pointer")}
-    >
-      <motion.div
+  return href ? (
+    <Link href={href} className={cn("group", className)}>
+      <motion.a
         className={baseClassName}
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -84,7 +82,36 @@ export default function HeroBadge({
         {endIcon && (
           <motion.div className="text-foreground/60">{endIcon}</motion.div>
         )}
-      </motion.div>
-    </BadgeWrapper>
-  );
+      </motion.a>
+    </Link>
+  ) : (
+    <motion.button
+      onClick={onClick}
+      className={cn("group", className)}
+      initial={{ opacity: 0, y: -20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8, ease }}
+      onHoverStart={() => controls.start("hover")}
+      onHoverEnd={() => controls.start("initial")}
+    >
+      <div className={baseClassName}>
+        {icon && (
+          <motion.div
+            className="text-foreground/60 transition-colors group-hover:text-primary"
+            variants={iconAnimationVariants}
+            initial="initial"
+            animate={controls}
+            transition={{ type: "spring", stiffness: 300, damping: 10 }}
+          >
+            {icon}
+          </motion.div>
+        )}
+        <span>{text}</span>
+        {endIcon && (
+          <motion.div className="text-foreground/60">{endIcon}</motion.div>
+        )}
+      </div>
+    </motion.button>
+  )
+  
 }
