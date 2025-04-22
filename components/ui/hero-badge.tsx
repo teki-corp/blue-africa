@@ -45,9 +45,6 @@ export default function HeroBadge({
   onClick,
 }: HeroBadgeProps) {
   const controls = useAnimation();
-
-  const BadgeWrapper = href ? Link : motion.button;
-  const wrapperProps = href ? { href } : { onClick };
   
 
   const baseClassName = cn(
