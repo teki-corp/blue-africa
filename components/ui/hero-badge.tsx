@@ -55,7 +55,7 @@ export default function HeroBadge({
   );
 
   return href ? (
-    <Link href={href} className={cn("group", className)}>
+    <Link href={href} className={cn("group", className)} >
       <motion.a
         className={baseClassName}
         initial={{ opacity: 0, y: -20 }}
